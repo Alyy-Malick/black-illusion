@@ -1,0 +1,152 @@
+@import "tailwindcss";
+
+@theme {
+  /* Colors */
+  --color-background: #000000;
+  --color-foreground: #F5F5F7;
+  --color-surface: #111111;
+  --color-surface-elevated: #1A1A1A;
+  --color-muted: #707070;
+  --color-muted-foreground: #A1A1AA;
+  --color-brand: #FFFFFF;
+  --color-brand-accent: #FFFFFF;
+
+  /* Fonts */
+  --font-display: "Outfit", "Inter", "system-ui", "sans-serif";
+  --font-sans: "Inter", "system-ui", "sans-serif";
+
+  /* Spacing & Sizing */
+  --spacing-section-sm: 4rem;
+  --spacing-section-md: 8rem;
+  --spacing-section-lg: 12rem;
+
+  --width-site: 1440px;
+  --width-content: 1200px;
+  --width-narrow: 800px;
+
+  /* Transitions */
+  --ease-premium: cubic-bezier(0.23, 1, 0.32, 1);
+  --duration-premium: 400ms;
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 0%;
+    --foreground: 240 5% 96%;
+    --surface: 0 0% 7%;
+    --surface-elevated: 0 0% 10%;
+    --muted: 240 4% 44%;
+    --muted-foreground: 240 5% 65%;
+  }
+
+  * {
+    @apply border-white/10;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased selection:bg-white selection:text-black;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  /* Heading Hierarchy */
+  h1, .h1 {
+    @apply font-display text-5xl md:text-8xl font-black tracking-tighter uppercase leading-[0.85];
+  }
+
+  h2, .h2 {
+    @apply font-display text-4xl md:text-6xl font-black tracking-tighter uppercase leading-[0.9];
+  }
+
+  h3, .h3 {
+    @apply font-display text-sm md:text-base font-bold tracking-[0.2em] uppercase;
+  }
+
+  p {
+    @apply text-muted-foreground leading-relaxed text-sm md:text-base;
+  }
+}
+
+@utility tracking-extrawide {
+  letter-spacing: 0.3em;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@utility animate-marquee {
+  animation: marquee 20s linear infinite;
+}
+
+@utility pause-marquee {
+  &:hover {
+    animation-play-state: paused;
+  }
+}
+
+/* Custom Transition Utility */
+@utility transition-premium {
+  transition-property: all;
+  transition-timing-function: var(--ease-premium);
+  transition-duration: var(--duration-premium);
+}
+
+@layer components {
+  /* Reusable Max-Width Containers */
+  .container-wide {
+    @apply mx-auto w-full max-w-(--width-site) px-6 md:px-12;
+  }
+
+  .container-content {
+    @apply mx-auto w-full max-w-(--width-content) px-6 md:px-8;
+  }
+
+  .container-narrow {
+    @apply mx-auto w-full max-w-(--width-narrow) px-6;
+  }
+
+  /* Section Spacing Utilities */
+  .section-padding-sm {
+    @apply py-(--spacing-section-sm);
+  }
+
+  .section-padding-md {
+    @apply py-(--spacing-section-md);
+  }
+
+  .section-padding-lg {
+    @apply py-(--spacing-section-lg);
+  }
+
+  /* Dark Surfaces */
+  .surface-bg {
+    @apply bg-surface text-foreground transition-premium;
+  }
+
+  .surface-elevated-bg {
+    @apply bg-surface-elevated text-foreground transition-premium;
+  }
+
+  /* Utility for Muted/Off-white interaction */
+  .text-muted {
+    @apply text-muted-foreground transition-colors duration-200;
+  }
+
+  .hover-bright:hover {
+    @apply text-foreground;
+  }
+}
+
+/* Custom Scrollbar for Edge/Minimal Vibe */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-background;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-white/20 hover:bg-white/40;
+}
