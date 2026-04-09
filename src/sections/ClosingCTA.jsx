@@ -1,6 +1,5 @@
 import React from 'react';
-
-
+import { motion } from 'framer-motion';
 import Section from './Section';
 import { Button } from '@/components/ui/Button';
 
