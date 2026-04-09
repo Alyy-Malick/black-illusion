@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import {  useScroll, useSpring } from 'framer-motion';
+import { motion, useScroll, useSpring } from 'framer-motion';
 
 // Sections
 import Hero from '@/sections/Hero';
@@ -28,7 +28,7 @@ const Home = () => {
     <div className="bg-black overflow-x-hidden">
       {/* Subtle Progress Bar */}
       <motion.div 
-        className="fixed top-0 left-0 right-0 h-px bg-white z-110 origin-left"
+        className="fixed top-0 left-0 right-0 h-px bg-white z-[110] origin-left"
         style={{ scaleX }}
       />
 
